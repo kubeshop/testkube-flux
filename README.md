@@ -7,7 +7,7 @@ This repository sets up Flux to use Testkube to generate testing resource manife
 ### 1. [Fork this repository](https://github.com/kubeshop/testkube-flux/fork) and clone it locally
 
 ```sh
-git clone https://github.com/$GITHUB_USERNAME/testkube-flux.git
+git clone https://github.com/$GITHUB_USER/testkube-flux.git
 ```
 
 ### 2. Start a Kubernetes cluster
@@ -23,8 +23,8 @@ kind create cluster
 Must be of type [__Classic__](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic) (i.e. starts with `ghp_`)
 
 ```sh
-GITHUB_TOKEN=ghp_1234545768
-GITHUB_USER=username
+GITHUB_TOKEN=<ghp_>
+GITHUB_USER=<username>
 ```
 
 And export the environment variables in your terminal.
@@ -47,10 +47,10 @@ The following command will create Flux source to tell Flux to apply changes that
 
 ```sh
 flux create source git testkube-tests \
-  --url=https://github.com/$GITHUB_USERNAME/testkube-flux \
+  --url=https://github.com/$GITHUB_USER/testkube-flux \
   --branch=main \
   --interval=30s \
-  --export > ./cluster/sources/testkube-tests/test-source.yaml
+  --export > ./cluster/flux-system/sources/testkube-tests/test-source.yaml
 ```
 
 And now create a Flux Kustomize Controller to apply the Testkube Test CRDs in the cluser using [Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/): 
@@ -63,7 +63,7 @@ flux create kustomization testkube-test \
   --path="cluster/testkube" \
   --prune=true \
   --interval=30s \
-  --export > ./cluster/sources/testkube-tests/testkube-kustomization.yaml
+  --export > ./cluster/flux-system/sources/testkube-tests/testkube-kustomization.yaml
 ```
 
 ### 6. Install Testkube in the cluster
@@ -100,6 +100,7 @@ resources:
 ### 9. Push all the changes to your repository: 
 
 ```sh 
+git pull origin main
 git add -A && git commit -m "Configure Testkube tests"
 git push
 ```
