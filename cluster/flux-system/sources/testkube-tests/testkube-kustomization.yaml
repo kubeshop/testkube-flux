@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: testkube-test
+  namespace: flux-system
+spec:
+  interval: 30s
+  path: cluster/testkube
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: testkube-tests
+  targetNamespace: testkube
+
