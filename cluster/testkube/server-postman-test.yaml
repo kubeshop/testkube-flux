@@ -1,7 +1,7 @@
 apiVersion: tests.testkube.io/v3
 kind: Test
 metadata:
-  name: postman-collection-test
+  name: postman-collection
   namespace: testkube
 spec:
   type: postman/collection

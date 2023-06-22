@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 30s
-  path: cluster/testkube
+  path: ./cluster/testkube
   prune: true
   sourceRef:
     kind: GitRepository

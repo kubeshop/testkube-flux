@@ -8,4 +8,5 @@ spec:
   interval: 30s
   ref:
     branch: main
-  url: https://github.com/aabedraba/testkube-flux
+  url: https://github.com/NCSamiAhonen/testkube-flux
+
