@@ -1,0 +1,12 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: testkube-tests
+  namespace: flux-system
+spec:
+  interval: 30s
+  ref:
+    branch: sc*
+  url: https://github.com//testkube-flux
+
